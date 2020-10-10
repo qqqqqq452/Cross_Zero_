@@ -4,7 +4,7 @@ public class GameState
 {
     public  IPlayer player1;
     public  IPlayer player2;
-    public  char[][] Field;
+    public  IField Field;
 
     public  void Start()
     {
@@ -31,7 +31,8 @@ public class GameState
         System.out.println("ход игрока  "+player.Name);
         Point turn1= GetTurnPoint(player);
 
-        Field[turn1.y][turn1.x]=player.Symbol;
+        Field.DoTurn(new Point(turn1.y, turn1.x),player.Symbol);
+        //Field.Field[turn1.y][turn1.x]=player.Symbol;
         Print();
 
         GameStates isWin = winChecker.Check(Field, turn1,player.Symbol,3);
@@ -51,12 +52,12 @@ public class GameState
     {
         Point turn =  null;
         boolean turnIsCorrect=false;
-        while (turn==null || !turnIsCorrect || Field[turn.y][turn.x]!='-')
+        while (turn==null || !turnIsCorrect || Field.Get(new Point(turn.y, turn.x))/*[turn.y][turn.x]*/!='-')
         {
             turn = player.DoTurn(Field, player2.Symbol);
             turnIsCorrect = !Checks.IsPointInCorrect(Field, turn);
-
-            if (turn==null || !turnIsCorrect|| Field[turn.y][turn.x]!='-')
+            char ch = Field.Get(new Point(turn.y, turn.x));
+            if (turn==null || !turnIsCorrect||Field.Get(new Point(turn.y, turn.x))/* Field.Field[turn.y][turn.x]*/!='-')
                 System.out.println("входные данные не верны, повторите ввод");
         }
         return turn;
@@ -65,7 +66,7 @@ public class GameState
 
     private  void Print()
     {
-        for (char[] chars : Field) {
+        for (char[] chars : Field.Field) {
             for (char ch : chars) {
                 if(ch==player1.Symbol)
                     System.out.print("\u001B[31m"+ch+"\u001B[0m");

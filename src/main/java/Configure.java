@@ -14,12 +14,7 @@ public class Configure
 
     public void DefaultConfig(GameState state)
     {
-        state.Field = new char[5][5];
-        for (int i = 0; i < 5; i++) {
-            for (int j = 0; j < 5; j++) {
-                state.Field[i][j]='-';
-            }
-        }
+        state.Field = new Field(5);
         state.player1 = new Player("P1",'x');
         state.player2 = new Player("P2",'o');
 
@@ -30,7 +25,7 @@ public class Configure
         this.state=state;
         setSize();
         state.player2 = new Player("P1",'.');
-        state.player1 = new AI2();
+        state.player1 = new AI();
         state.player1.Name="AI";
         state.player1.Symbol='A';
     }
@@ -46,13 +41,7 @@ public class Configure
         {
             System.out.println("входные данные не верны \n значение по умолчанию :3");
         }
-        char[][] field = new char[size][size];
-
-        for (int i = 0; i < size; i++) {
-            for (int j = 0; j < size; j++) {
-                field[i][j]='-';
-            }
-        }
+        IField field = new Field(size);
 
         state.Field=field;
     }

@@ -10,7 +10,7 @@ public class Checks {
         new Point(-1,-1)
     };
 
-    public GameStates Check(char[][] field, Point startPoint,char ch, int toWin)
+    public GameStates Check(IField field, Point startPoint,char ch, int toWin)
     {
         for (int i = 0; i < directions.length; i++)
         {
@@ -18,25 +18,26 @@ public class Checks {
             if (result>=toWin)
                 return  GameStates.win;
         }
-        return  IsDraw(field)?GameStates.draw: GameStates.none;
+        return  field.freeCells==0?GameStates.draw: GameStates.none;
     }
 
-    private  int checkDirection(Point startPoint, char[][] field, char ch,Point coef)
+    private  int checkDirection(Point startPoint, IField field, char ch,Point coef)
     {
         int result = 0;
         int swapCount=0;
         Point newPoint = new Point(startPoint.x-coef.x, startPoint.y-coef.y);
-        for (int i = 0; i < field[0].length && swapCount<2; i++)
+        for (int i = 0; i < field.Lenght && swapCount<2; i++)
         {
             newPoint=new Point(newPoint.x+coef.x, newPoint.y+coef.y);
-            if (Checks.IsPointInCorrect(field,newPoint)|| field[newPoint.y][newPoint.x]!=ch)
+            if (Checks.IsPointInCorrect(field,newPoint)||
+                    field.Get(new Point(newPoint.y, newPoint.x))/*field[newPoint.y][newPoint.x]*/!=ch)
             {
                 i--;
                 coef = FlipDirection(coef);
                 newPoint = new Point(startPoint.x, startPoint.y);
                 swapCount++;
             }
-            else  if ( field[newPoint.y][newPoint.x]==ch)
+            else  if (field.Get(new Point(newPoint.y, newPoint.x))/* field[newPoint.y][newPoint.x]*/==ch)
                 result++;
         }
         return result;
@@ -53,9 +54,9 @@ public class Checks {
         return  true;
     }
 
-    public static boolean IsPointInCorrect(char[][] field,Point value )
+    public static boolean IsPointInCorrect(IField field,Point value )
     {
-        return value==null|| value.x<0 || value.y<0 || value.y >field.length-1 || value.x >field[0].length-1;
+        return value==null|| value.x<0 || value.y<0 || value.y >field.Lenght-1 || value.x >field.Lenght-1;
     }
 
     private  Point FlipDirection(Point p)

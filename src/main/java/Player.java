@@ -9,7 +9,7 @@ public class Player extends IPlayer
         this.Symbol=Symbol;
     }
 
-    public Point DoTurn(char[][] field, char ch)
+    public Point DoTurn(IField field, char ch)
     {
         Scanner sc = new Scanner(System.in);
         String[] enter =sc.nextLine().split(" ");

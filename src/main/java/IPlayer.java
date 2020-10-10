@@ -10,5 +10,5 @@ public abstract class IPlayer
 
 
 
-    public abstract Point DoTurn(char[][] field, char playerch);
+    public abstract Point DoTurn(IField field, char playerch);
 }
