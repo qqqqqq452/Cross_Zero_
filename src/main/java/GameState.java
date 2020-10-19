@@ -56,7 +56,6 @@ public class GameState
         {
             turn = player.DoTurn(Field, player2.Symbol);
             turnIsCorrect = !Checks.IsPointInCorrect(Field, turn);
-            char ch = Field.Get(new Point(turn.y, turn.x));
             if (turn==null || !turnIsCorrect||Field.Get(new Point(turn.y, turn.x))/* Field.Field[turn.y][turn.x]*/!='-')
                 System.out.println("входные данные не верны, повторите ввод");
         }

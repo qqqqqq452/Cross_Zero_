@@ -24,7 +24,8 @@ public  class AI extends IPlayer
     //1- ai -1 -human
     private  void MinMax(Move current, int player, int lvl)
     {
-
+        if (lvl>=3)
+            return;
         Iterations++;
         ArrayList<Point> availableIndexes = current.field.GetFreeIndexes();
         for (int i = 0; i < availableIndexes.size(); i++)
@@ -33,7 +34,7 @@ public  class AI extends IPlayer
             int points = getPoints(newMove.field, newMove.turn, player==1?'A': playerCh);
             current.branches.add(newMove);
             if (points==-10)
-                MinMax(newMove,player*-1,lvl++);
+                MinMax(newMove,player*-1,lvl+=1);
             else  if (points==0)
                 newMove.score=0;
             else if (points==10)

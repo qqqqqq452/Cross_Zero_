@@ -8,6 +8,7 @@ import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 public class ChekerTests {
+    /*
     @Test
     public  void  horizontalTest()
     {
@@ -74,7 +75,7 @@ public class ChekerTests {
         Assert.assertTrue(f==GameStates.win);
     }
 
-    //@Test
+    @Test
     public  void AITest()
     {
         char[][] Field = new char[][]
@@ -98,7 +99,7 @@ public class ChekerTests {
          ai = new AI().DoTurn(Field,'x');
         System.out.println(ai);
         System.out.println(AI.Iterations);
-*/
+
     }
 
     @Test
@@ -106,17 +107,19 @@ public class ChekerTests {
     {
         char[][] Field = new char[][]
                 {
-                        new char[]{'-','-','-','-',},
-                        new char[]{'-','-','-','-'},
-                        new char[]{'-','-','-','-'},
-                        new char[]{'-','-','-','-'},
+                        new char[]{'A','-','x',},
+                        new char[]{'x','-','A',},
+                        new char[]{'A','x','A',},
+                        //new char[]{'-','-','-','-'},
                 };
-        new AI().DoTurn(Field,'x');
-        long start = System.nanoTime();
+        //GameStates check10 = new Checks().Check(Field,new Point(1,0),'A',3);
+       // GameStates check01 = new Checks().Check(Field,new Point(0,1),'A',3);
+        //new AI().DoTurn(Field,'x');
+       /* long start = System.nanoTime();
         Point ai = new AI().DoTurn(Field,'x');
+        System.out.println(ai);
         System.out.println(AI.Iterations);
-        System.out.println("алгоритм занял  "+ (System.nanoTime() - start));
-
+        System.out.println("time in work  "+ (System.nanoTime() - start));
         Field = new char[][]
                 {
                         new char[]{'-','-','-','-','-','-','-','-'},
@@ -152,6 +155,25 @@ public class ChekerTests {
          ai = new AI().DoTurn(Field,'x');
         System.out.println(ai);
         System.out.println(AI.Iterations);
-*/
+
+    }
+    */
+
+    @Test
+    public  void test()
+    {
+        char[][] field = new char[][]
+                {
+                        new char[]{'A','-','-',},
+                        new char[]{'A','x','-',},
+                        new char[]{'x','-','-',},
+                        //ew char[]{'-','-','-','-'},
+                };
+        Field ff = new Field(3);
+        ff.freeCells-=4;
+        ff.Field=field;
+        AI ai = new AI();
+        System.out.println( ai.DoTurn(ff,'x'));
+
     }
 }

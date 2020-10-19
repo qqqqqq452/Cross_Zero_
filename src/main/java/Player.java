@@ -16,6 +16,7 @@ public class Player extends IPlayer
 
         try {
             //System.out.println("readed "+enter[0]+enter[1]);
+
             return  new Point(Integer.parseInt(enter[0]), Integer.parseInt(enter[1]));
         }
 

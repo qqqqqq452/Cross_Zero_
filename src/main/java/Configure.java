@@ -30,6 +30,8 @@ public class Configure
         state.player1.Symbol='A';
     }
 
+
+
     private   void setSize()
     {
         System.out.println("введите одну цифру -  размер поля, поле квадратное");
