@@ -26,7 +26,7 @@ public class Checks {
         int result = 0;
         int swapCount=0;
         Point newPoint = new Point(startPoint.x-coef.x, startPoint.y-coef.y);
-        for (int i = 0; i < field.Lenght && swapCount<2; i++)
+        for (int i = 0; i < field.Length && swapCount<2; i++)
         {
             newPoint=new Point(newPoint.x+coef.x, newPoint.y+coef.y);
             if (Checks.IsPointInCorrect(field,newPoint)||
@@ -56,7 +56,7 @@ public class Checks {
 
     public static boolean IsPointInCorrect(IField field,Point value )
     {
-        return value==null|| value.x<0 || value.y<0 || value.y >field.Lenght-1 || value.x >field.Lenght-1;
+        return value==null|| value.x<0 || value.y<0 || value.y >field.Length -1 || value.x >field.Length -1;
     }
 
     private  Point FlipDirection(Point p)

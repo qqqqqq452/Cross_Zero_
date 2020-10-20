@@ -1,6 +1,4 @@
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.HashMap;
 
 public class AI2 extends  IPlayer {
 
@@ -39,7 +37,7 @@ public class AI2 extends  IPlayer {
         int result = 0;
         int swapCount=0;
         Point newPoint = new Point(startPoint.x-coef.x, startPoint.y-coef.y);
-        for (int i = 0; i < field.Lenght && swapCount<2; i++)
+        for (int i = 0; i < field.Length && swapCount<2; i++)
         {
             newPoint=new Point(newPoint.x+coef.x, newPoint.y+coef.y);
             if (Checks.IsPointInCorrect(field,newPoint)|| field.Get(new Point(newPoint.y, newPoint.x))

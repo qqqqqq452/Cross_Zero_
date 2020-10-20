@@ -1,5 +1,4 @@
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.HashSet;
 
 public class Field extends IField {
@@ -15,7 +14,7 @@ public class Field extends IField {
                 //freeIndexes.add(new Point(i,j));
             }
         }
-        this.Lenght=size;
+        this.Length =size;
         freeCells = (long)size*size;
     }
 

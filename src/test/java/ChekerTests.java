@@ -164,15 +164,18 @@ public class ChekerTests {
     {
         char[][] field = new char[][]
                 {
-                        new char[]{'A','-','-',},
-                        new char[]{'A','x','-',},
-                        new char[]{'x','-','-',},
-                        //ew char[]{'-','-','-','-'},
+                        new char[]{'x','x','A','-'},
+                        new char[]{'A','-','-','-'},
+                        new char[]{'x','A','A','-'},
+                        new char[]{'x','x','-','-'},
+                        //new char[]{'-','-','-','-','-'},
                 };
-        Field ff = new Field(3);
-        ff.freeCells-=4;
-        ff.Field=field;
+
+        Field ff = new Field(4);
+       ff.freeCells-=5+2;
+       ff.Field=field;
         AI ai = new AI();
+        //System.out.println(new Checks().Check(ff, new Point(2,0), 'A',3));
         System.out.println( ai.DoTurn(ff,'x'));
 
     }

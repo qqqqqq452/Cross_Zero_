@@ -24,27 +24,28 @@ public  class AI extends IPlayer
     //1- ai -1 -human
     private  void MinMax(Move current, int player, int lvl)
     {
-        if (lvl>=3)
+        if (lvl>=4) {
+
+            current.score=0;
             return;
+        }
         Iterations++;
-        ArrayList<Point> availableIndexes = current.field.GetFreeIndexes();
+        ArrayList<Point> availableIndexes = current.field.GetFreeIndexes2();
         for (int i = 0; i < availableIndexes.size(); i++)
         {
             Move newMove = new Move(availableIndexes.get(i), current.field,player==1?'A': playerCh);
+            lvl++;
             int points = getPoints(newMove.field, newMove.turn, player==1?'A': playerCh);
             current.branches.add(newMove);
             if (points==-10)
-                MinMax(newMove,player*-1,lvl+=1);
+                MinMax(newMove,player*-1,lvl);
             else  if (points==0)
                 newMove.score=0;
             else if (points==10)
                 newMove.score=player==1?10:-10;
 
-            if (current.branches.size()==0)
-                current=current;
-
             newMove.RollBAck();
-
+            lvl--;
             if (newMove.score==10&&  player==1)
             {
                 current.score=10;
@@ -118,6 +119,7 @@ class  Move
     {
         if (turn.x!=-1)
             this.field.RollBack(turn,'-');//.Field[turn.x][turn.y]= '-';
+        //field=null;
     }
 
     @Override
