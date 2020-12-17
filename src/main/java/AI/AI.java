@@ -1,3 +1,10 @@
+package AI;
+
+import WinChecker.Checks;
+import abstractions.IField;
+import abstractions.IPlayer;
+import enums.GameStates;
+
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -5,14 +12,14 @@ import java.util.Comparator;
 
 public  class AI extends IPlayer
 {
-    public  static  int Iterations=0;
     private  char playerCh;
     private Move Root;
+    protected int deppLvl;
 
-    public Point DoTurn(IField field, char playerch)
+    public Point DoTurn(IField field, char playerCh)
     {
         Root = new Move(new Point(-1,-1),field,'A');
-        this.playerCh =playerch;
+        this.playerCh =playerCh;
         MinMax(Root,1,1);
 
         Point res = Root.branches.stream().max(Comparator.comparingInt(x -> x.score)).get().turn;
@@ -24,12 +31,11 @@ public  class AI extends IPlayer
     //1- ai -1 -human
     private  void MinMax(Move current, int player, int lvl)
     {
-        if (lvl>=4) {
+        if (lvl>=deppLvl) {
 
             current.score=0;
             return;
         }
-        Iterations++;
         ArrayList<Point> availableIndexes = current.field.GetFreeIndexes2();
         for (int i = 0; i < availableIndexes.size(); i++)
         {
@@ -46,19 +52,17 @@ public  class AI extends IPlayer
 
             newMove.RollBAck();
             lvl--;
-            if (newMove.score==10&&  player==1)
+            if (( newMove.score)==10&&  player==1)
             {
                 current.score=10;
                 break;
             }
 
-            if (newMove.score==-10 && player==-1)
+            if ( newMove.score==-10 && player==-1)
             {
                 current.score=-10;
                 break;
             }
-
-
         }
 
 
@@ -78,7 +82,7 @@ public  class AI extends IPlayer
     private  int getPoints(IField field, Point start, char ch)
     {
         start  =new Point(start.y, start.x);
-        GameStates cs = new Checks().Check(field,start,ch,3);
+        GameStates cs = new Checks().Check(field,start,ch, field.Length);
         switch (cs)
         {
             case win:
@@ -93,40 +97,3 @@ public  class AI extends IPlayer
     }
 }
 
-class  Move
-{
-    int score=-100;
-    Point turn;
-    IField field;
-    ArrayList<Move> branches = new ArrayList<>();
-
-    public  Move(Point turn, IField field, char ch)
-    {
-        this.field=field;
-        //this.field = new char[field.length][field.length];
-       /* for (int i = 0; i < field.length; i++) {
-            for (int j = 0; j < field.length; j++) {
-                    this.field[j][i]=field[j][i];
-            }
-        }
-        */
-        if (turn.x!=-1)
-            this.field.DoTurn(turn,ch);//.Field[turn.x][turn.y]= ch;
-        this.turn=turn;
-    }
-
-    public  void  RollBAck()
-    {
-        if (turn.x!=-1)
-            this.field.RollBack(turn,'-');//.Field[turn.x][turn.y]= '-';
-        //field=null;
-    }
-
-    @Override
-    public String toString() {
-        String res="";
-        for (char[] row:field.Field)
-            res+=Arrays.toString(row)+"\n";
-        return res;
-    }
-}

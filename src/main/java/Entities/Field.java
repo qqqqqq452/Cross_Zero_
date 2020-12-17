@@ -1,3 +1,7 @@
+package Entities;
+
+import abstractions.IField;
+
 import java.awt.*;
 import java.util.HashSet;
 

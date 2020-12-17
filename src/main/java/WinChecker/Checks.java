@@ -1,3 +1,8 @@
+package WinChecker;
+
+import abstractions.IField;
+import enums.GameStates;
+
 import java.awt.*;
 
 public class Checks {
@@ -10,15 +15,15 @@ public class Checks {
         new Point(-1,-1)
     };
 
-    public GameStates Check(IField field, Point startPoint,char ch, int toWin)
+    public GameStates Check(IField field, Point startPoint, char ch, int toWin)
     {
-        for (int i = 0; i < directions.length; i++)
+        for (Point dir : directions)
         {
-            int result = checkDirection(startPoint,field,ch,directions[i]);
+            int result = checkDirection(startPoint,field,ch,dir);
             if (result>=toWin)
                 return  GameStates.win;
         }
-        return  field.freeCells==0?GameStates.draw: GameStates.none;
+        return  field.freeCells==0? GameStates.draw: GameStates.none;
     }
 
     private  int checkDirection(Point startPoint, IField field, char ch,Point coef)
@@ -30,28 +35,17 @@ public class Checks {
         {
             newPoint=new Point(newPoint.x+coef.x, newPoint.y+coef.y);
             if (Checks.IsPointInCorrect(field,newPoint)||
-                    field.Get(new Point(newPoint.y, newPoint.x))/*field[newPoint.y][newPoint.x]*/!=ch)
+                    field.Get(new Point(newPoint.y, newPoint.x))!=ch)
             {
                 i--;
                 coef = FlipDirection(coef);
                 newPoint = new Point(startPoint.x, startPoint.y);
                 swapCount++;
             }
-            else  if (field.Get(new Point(newPoint.y, newPoint.x))/* field[newPoint.y][newPoint.x]*/==ch)
+            else  if (field.Get(new Point(newPoint.y, newPoint.x))==ch)
                 result++;
         }
         return result;
-    }
-
-    private  boolean IsDraw(char[][] field)
-    {
-        for(char[] row : field)
-        {
-            for(char ch : row)
-                if (ch=='-')
-                    return  false;
-        }
-        return  true;
     }
 
     public static boolean IsPointInCorrect(IField field,Point value )

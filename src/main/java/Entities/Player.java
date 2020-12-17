@@ -1,3 +1,8 @@
+package Entities;
+
+import abstractions.IField;
+import abstractions.IPlayer;
+
 import java.awt.*;
 import java.util.Scanner;
 

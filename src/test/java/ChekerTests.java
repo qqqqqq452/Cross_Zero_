@@ -1,52 +1,49 @@
-import org.junit.Assert;
+import AI.AI;
+import Entities.Field;
 import org.junit.Test;
-import org.junit.rules.Stopwatch;
 
-import java.awt.*;
-import java.io.Console;
-import java.util.Scanner;
-import java.util.concurrent.TimeUnit;
+import java.io.IOException;
 
 public class ChekerTests {
     /*
     @Test
     public  void  horizontalTest()
     {
-        Checks cheker = new Checks();
-        char[][] Field = new char[][]
+        WinChecker.Checks cheker = new WinChecker.Checks();
+        char[][] Entities.Field = new char[][]
         {
                 new char[]{'x','x','x'},
                 new char[]{'0','0','0'},
                 new char[]{'0','0','0'}
 
         };
-        GameStates f =cheker.Check(Field,new Point(0,0),'x',3);
-        Assert.assertTrue(f==GameStates.win);
+        enums.GameStates f =cheker.Check(Entities.Field,new Point(0,0),'x',3);
+        Assert.assertTrue(f==enums.GameStates.win);
 
-        f =cheker.Check(Field,new Point(1,1),'0',3);
-        Assert.assertTrue(f==GameStates.win);
+        f =cheker.Check(Entities.Field,new Point(1,1),'0',3);
+        Assert.assertTrue(f==enums.GameStates.win);
 
-        f =cheker.Check(Field,new Point(0,1),'0',3);
-        Assert.assertTrue(f==GameStates.win);
+        f =cheker.Check(Entities.Field,new Point(0,1),'0',3);
+        Assert.assertTrue(f==enums.GameStates.win);
 
-        f =cheker.Check(Field,new Point(2,1),'0',3);
-        Assert.assertTrue(f==GameStates.win);
+        f =cheker.Check(Entities.Field,new Point(2,1),'0',3);
+        Assert.assertTrue(f==enums.GameStates.win);
 
-        f =cheker.Check(Field,new Point(0,2),'0',3);
-        Assert.assertTrue(f==GameStates.win);
+        f =cheker.Check(Entities.Field,new Point(0,2),'0',3);
+        Assert.assertTrue(f==enums.GameStates.win);
 
-        f =cheker.Check(Field,new Point(1,2),'0',3);
-        Assert.assertTrue(f==GameStates.win);
+        f =cheker.Check(Entities.Field,new Point(1,2),'0',3);
+        Assert.assertTrue(f==enums.GameStates.win);
 
-        f =cheker.Check(Field,new Point(2,2),'0',3);
-        Assert.assertTrue(f==GameStates.win);
+        f =cheker.Check(Entities.Field,new Point(2,2),'0',3);
+        Assert.assertTrue(f==enums.GameStates.win);
     }
 
     @Test
     public  void diagonalTest()
     {
-        Checks cheker = new Checks();
-        char[][] Field = new char[][]
+        WinChecker.Checks cheker = new WinChecker.Checks();
+        char[][] Entities.Field = new char[][]
                 {
                         new char[]{'x','0','x'},
                         new char[]{'0','x','0'},
@@ -62,65 +59,65 @@ public class ChekerTests {
 
                 };
 
-        GameStates f =cheker.Check(Field,new Point(1,1),'x',3);
-        Assert.assertTrue(f==GameStates.win);
+        enums.GameStates f =cheker.Check(Entities.Field,new Point(1,1),'x',3);
+        Assert.assertTrue(f==enums.GameStates.win);
 
-        f =cheker.Check(Field,new Point(0,2),'x',3);
-        Assert.assertTrue(f==GameStates.win);
+        f =cheker.Check(Entities.Field,new Point(0,2),'x',3);
+        Assert.assertTrue(f==enums.GameStates.win);
 
-         f =cheker.Check(Field,new Point(0,0),'x',3);
-        Assert.assertTrue(f==GameStates.win);
+         f =cheker.Check(Entities.Field,new Point(0,0),'x',3);
+        Assert.assertTrue(f==enums.GameStates.win);
 
-        f =cheker.Check(Field,new Point(2,0),'x',3);
-        Assert.assertTrue(f==GameStates.win);
+        f =cheker.Check(Entities.Field,new Point(2,0),'x',3);
+        Assert.assertTrue(f==enums.GameStates.win);
     }
 
     @Test
     public  void AITest()
     {
-        char[][] Field = new char[][]
+        char[][] Entities.Field = new char[][]
                 {
                         new char[]{'x','A','x'},
                         new char[]{'x','A','-'},
                         new char[]{'A','x','-'},
                 };
-        Point ai = new AI().DoTurn(Field,'x');
+        Point ai = new AI.AI().DoTurn(Entities.Field,'x');
         System.out.println(ai);
-        System.out.println(AI.Iterations);
-        AI.Iterations=0;
+        System.out.println(AI.AI.Iterations);
+        AI.AI.Iterations=0;
 
 
-        /*Field = new char[][]
+        /*Entities.Field = new char[][]
                 {
                         new char[]{'A','-','-'},
                         new char[]{'-','x','-'},
                         new char[]{'-','-','-'},
                 };
-         ai = new AI().DoTurn(Field,'x');
+         ai = new AI.AI().DoTurn(Entities.Field,'x');
         System.out.println(ai);
-        System.out.println(AI.Iterations);
+        System.out.println(AI.AI.Iterations);
 
     }
 
     @Test
     public  void AI2Test()
     {
-        char[][] Field = new char[][]
+        char[][] Entities.Field = new char[][]
                 {
                         new char[]{'A','-','x',},
                         new char[]{'x','-','A',},
                         new char[]{'A','x','A',},
                         //new char[]{'-','-','-','-'},
                 };
-        //GameStates check10 = new Checks().Check(Field,new Point(1,0),'A',3);
-       // GameStates check01 = new Checks().Check(Field,new Point(0,1),'A',3);
-        //new AI().DoTurn(Field,'x');
+        //enums.GameStates check10 = new WinChecker.Checks().Check(Entities.Field,new Point(1,0),'A',3);
+       // enums.GameStates check01 = new WinChecker.Checks().Check(Entities.Field,new Point(0,1),'A',3);
+        //new AI.AI().DoTurn(Entities.Field,'x');
        /* long start = System.nanoTime();
-        Point ai = new AI().DoTurn(Field,'x');
+        Point ai = new AI.AI().DoTurn(Entities.Field,'x');
         System.out.println(ai);
-        System.out.println(AI.Iterations);
+        System.out.println(AI.AI.Iterations);
         System.out.println("time in work  "+ (System.nanoTime() - start));
-        Field = new char[][]
+        Entities.Field = new char[][]
                 {
                         new char[]{'-','-','-','-','-','-','-','-'},
                         new char[]{'-','-','-','-','-','-','-','-'},
@@ -136,47 +133,49 @@ public class ChekerTests {
         /*int counter =0;
         while (ai!=null)
         {
-            ai = new AI2().DoTurn(Field, 'x');
+            ai = new AI.AI2().DoTurn(Entities.Field, 'x');
             if(ai==null)
                 break;
             System.out.println(ai);
-            Field[ai.y][ai.x] = 'A';
+            Entities.Field[ai.y][ai.x] = 'A';
             counter++;
         }
 
          */
         //System.out.println(counter);
-        /*Field = new char[][]
+        /*Entities.Field = new char[][]
                 {
                         new char[]{'A','-','-'},
                         new char[]{'-','x','-'},
                         new char[]{'-','-','-'},
                 };
-         ai = new AI().DoTurn(Field,'x');
+         ai = new AI.AI().DoTurn(Entities.Field,'x');
         System.out.println(ai);
-        System.out.println(AI.Iterations);
+        System.out.println(AI.AI.Iterations);
 
     }
     */
 
     @Test
-    public  void test()
-    {
+    public  void test() throws IOException {
         char[][] field = new char[][]
                 {
-                        new char[]{'x','x','A','-'},
-                        new char[]{'A','-','-','-'},
-                        new char[]{'x','A','A','-'},
-                        new char[]{'x','x','-','-'},
+                        new char[]{'x','x','-',},
+                        new char[]{'-','A','A',},
+                        new char[]{'-','A','-'},
+                        //new char[]{'x','x','-',},
                         //new char[]{'-','-','-','-','-'},
                 };
 
-        Field ff = new Field(4);
-       ff.freeCells-=5+2;
+        Field ff = new Field(3);
+       ff.freeCells-=5;
        ff.Field=field;
         AI ai = new AI();
-        //System.out.println(new Checks().Check(ff, new Point(2,0), 'A',3));
-        System.out.println( ai.DoTurn(ff,'x'));
+
+        //System.out.println(Files.walkFileTree(pp, );
+        //System.out.println(ii);
+        //System.out.println(new WinChecker.Checks().Check(ff, new Point(2,0), 'A',3));
+        //System.out.println( ai.DoTurn(ff,'x'));
 
     }
 }

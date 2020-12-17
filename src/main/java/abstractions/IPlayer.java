@@ -1,3 +1,5 @@
+package abstractions;
+
 import java.awt.*;
 
 public abstract class IPlayer

@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="ChekerTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-10-20T09:21:41" hostname="DESKTOP-T2NF97K" time="0.026">
+<testsuite name="ChekerTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-10-22T10:49:42" hostname="DESKTOP-T2NF97K" time="0.009">
   <properties/>
-  <testcase name="test" classname="ChekerTests" time="0.026"/>
-  <system-out><![CDATA[java.awt.Point[x=2,y=1]
+  <testcase name="test" classname="ChekerTests" time="0.009"/>
+  <system-out><![CDATA[C:\Users\User\Desktop\17\17.exe
+C:\Users\User\Desktop\17\17.pdf
+C:\Users\User\Desktop\17\17_otchet.pdf
+C:\Users\User\Desktop\17\debug.log
+java.util.stream.ReferencePipeline$3@3f0eb6ea
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
