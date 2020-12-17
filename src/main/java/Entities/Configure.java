@@ -1,3 +1,8 @@
+package Entities;
+
+import AI.MainAI;
+import abstractions.IField;
+
 import java.util.Scanner;
 
 public class Configure
@@ -25,7 +30,7 @@ public class Configure
         this.state=state;
         setSize();
         state.player2 = new Player("P1",'.');
-        state.player1 = new AI();
+        state.player1 = new MainAI();
         state.player1.Name="AI";
         state.player1.Symbol='A';
     }
@@ -41,8 +46,10 @@ public class Configure
         try { size = new Scanner(System.in).nextInt(); }
         catch (Exception e)
         {
-            System.out.println("входные данные не верны \n значение по умолчанию :3");
+            System.out.println("входные данные не верны \nзначение по умолчанию :3");
         }
+        if (size<3)
+            size=3;
         IField field = new Field(size);
 
         state.Field=field;
